@@ -1,0 +1,263 @@
+<html>
+
+<head>
+  <title>Warehouse</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../static/css/indexstyle.css">
+  
+  <script>
+	  $(document).ready(function(){ 
+		  var imgs = {{ stats | tojson }}; 
+	    for(var i=0 ; i<imgs.length ; i++) {
+			 document.getElementById('output').innerHTML = "";
+	      $('<div class="carousel-item"><img src="'+imgs[i]+'" style=" width: 500px; height: 500px; margin: 0 auto !important;"></div>').appendTo('.carousel-inner');
+	      $('<li data-target="#carousel" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
+
+	    }
+	    $('.carousel-item').first().addClass('active');
+	    $('.carousel-indicators > li').first().addClass('active');
+	    $('#carousel').carousel();
+	  });
+  </script>
+	  
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="60">	
+	
+	<!--Top bar-->
+	<nav class="navbar navbar-expand-lg fixed-top">
+      <a class="navbar-brand"><span><img class ="logo_image" src="../static/logo.png" alt=""></span></a>
+		<a class="navbar-brand mb-0 h1">WAREHOUSE</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<ul class="nav nav-tabs" id="tabs" role = "tablist" style="border-bottom: 0px solid !important;">
+ 				<li class="nav-item">
+   					<a class="nav-link active" data-toggle="tab" href="#inventory" style="font-size:18px; font-weight: normal; ">Inventory</a>
+ 				</li>
+ 				<li class="nav-item">
+   					<a class="nav-link" data-toggle="tab" href="#retrieval" style="font-size:18px; font-weight: normal;">Retrieval</a>
+ 				</li>
+ 				<li class="nav-item">
+   					<a class="nav-link" data-toggle="tab" href="#analytics" style="font-size:18px; font-weight: normal;">Analytics</a>
+ 				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- Tabs -->
+	<div class="tab-content">
+		<div class="tab-pane active" id="inventory">		
+			<section id="page">
+				<div class="container">
+					<h6 class="section-title h1" style="text-align:center;">Inventory Management</h6>
+					<div class="row">
+						<div class="col-sm-12">
+							<nav class=".navbar-expand-lg">
+								<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+									<a class="nav-item nav-link active" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="true">Add New Product</a>
+									<a class="nav-item nav-link" id="nav-update-tab" data-toggle="tab" href="#nav-update" role="tab" aria-controls="nav-update" aria-selected="true">Update Product</a>
+									<a class="nav-item nav-link" id="nav-stock-tab" data-toggle="tab" href="#nav-stock" role="tab" aria-controls="nav-stock" aria-selected="false">Update Stock</a>
+									<a class="nav-item nav-link" id="nav-supplier-tab" data-toggle="tab" href="#nav-supplier" role="tab" aria-controls="nav-supplier" aria-selected="false">Add Supplier</a>
+								</div>
+							</nav>
+					
+							<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent" style="padding-bottom: 1px;">
+								<div class="tab-pane fade show active" id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab" style="padding-bottom: 1px;">
+									<p style="text-align: center; padding-top: 5px;">Add a new product to the inventory</p>
+										
+									<form method="post" action="{{url_for('add_product')}}">
+										<div class="input-group mb-3">
+											<input name="ID" type="text" class="form-control" placeholder="Product ID" aria-label="ID" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="Name" type="text" class="form-control" placeholder="Name" aria-label="Name" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="Description" type="text" class="form-control" placeholder="Description" aria-label="Description" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="Price" type="text" class="form-control" placeholder="Price" aria-label="Price" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="SupplierID" type="text" class="form-control" placeholder="Supplier ID" aria-label="SupplierID" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="Lead" type="text" class="form-control" placeholder="Lead Time" aria-label="Lead">
+										</div>
+										<div class="input-group mb-3">
+											<input name="Volume" type="text" class="form-control" placeholder="Volume (in litres)" aria-label="Volume" required>
+										</div>
+										<div class="input-group mb-3">
+											<select name="Shape" id="Shape" style="border-radius: 4px; background-color: white; colour: grey; border: none; width: 100%; height: 40px;" required>
+												<option value="Cube" selected>Cube</option>
+												<option value="Cylinder">Cylinder</option>       
+											</select>
+										</div>
+										<div class="input-group mb-3">
+											<select name="Fragile" id="Fragile" style="border-radius: 4px; background-color: white; colour: grey; border: none; width: 100%; height: 40px;" required>
+												<option value=0 selected>Not fragile</option>
+												<option value=1>Fragile</option>       
+											</select>
+										</div>
+										<div class="input-group mb-3">
+											<input type="submit" value="Add" style="border-radius: 4px; background-color: white; colour: grey; width: 100%; height: 40px;">
+										</div>
+										<div class="container-fluid" style="padding: 0px; margin:0; text-align: center;">
+										{% with messages = get_flashed_messages() %}
+										  {% if messages %}
+										    <ul class=flashes style="text-align: center;">
+										    {% for message in messages %}
+										      <li style="text-align: center;">{{ message }}</li>
+										    {% endfor %}
+										    </ul>
+										  {% endif %}
+										{% endwith %}
+										</div>
+									</form>
+								</div>
+						
+								<div class="tab-pane fade" id="nav-update" role="tabpanel" aria-labelledby="nav-update-tab">
+									<p style="text-align: center; padding-top: 10px;">Add additional supplier information to an existing product</p>
+									<form method="post" action="{{url_for('add_details')}}">
+										<div class="input-group mb-3">
+											<input name="ID" type="text" class="form-control" placeholder="ID" aria-label="ID" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="SupplierID" type="text" class="form-control" placeholder="Supplier ID" aria-label="SupplierID " required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="Price" type="text" class="form-control" placeholder="Price" aria-label="Price" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="Lead" type="text" class="form-control" placeholder="Lead Time" aria-label="Lead" required>
+										</div>
+										<div class="input-group mb-3">
+											<input type="submit" value="Update" style="border-radius: 4px; background-color: white; colour: grey; width: 100%; height: 40px;">
+										</div>
+									</form>
+								</div>
+						
+								<div class="tab-pane fade" id="nav-stock" role="tabpanel" aria-labelledby="nav-stock-tab">
+									<p style="text-align: center; padding-top: 10px;">Update stock</p>
+									<form method="post" action="{{url_for('add_stock')}}">
+										<div class="input-group mb-3">
+											<input name="ID" type="text" class="form-control" placeholder="Product ID" aria-label="ID" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="RFID" type="text" class="form-control" placeholder="RFID" aria-label="RFID" required>
+										</div>
+										<div class="input-group mb-3">
+											<input type="submit" value="Add" style="border-radius: 4px; background-color: white; colour: grey; width: 100%; height: 40px;">
+										</div>
+									</form>
+								</div>
+						
+								<div class="tab-pane fade" id="nav-supplier" role="tabpanel" aria-labelledby="nav-supplier-tab">
+									<p style="text-align: center; padding-top: 10px;">Add a new supplier</p>
+									<form method="post" action="{{url_for('add_supplier')}}">
+										<div class="input-group mb-3">
+											<input name="SupplierID" type="text" class="form-control" placeholder="Supplier ID" aria-label="SupplierID" required>
+										</div>
+										<div class="input-group mb-3">
+											<input name="Name" type="text" class="form-control" placeholder="Supplier Name" aria-label="Name" required>
+										</div>
+										<div class="input-group mb-3">
+											<input type="submit" value="Add" style="border-radius: 4px; background-color: white; colour: grey; width: 100%; height: 40px;">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="tab-pane" id="retrieval">		
+			<section id="page">	
+				<div class="container">
+					<h6 class="section-title h1">Retrieval</h6>
+					<div class="row">
+						<div class="col-sm-12">
+					
+							<nav class=".navbar-expand-lg">
+								<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+									<a class="nav-item nav-link active" id="nav-find-tab" data-toggle="tab" href="#nav-find" role="tab" aria-controls="nav-find" aria-selected="true">Retrieve Item</a>
+									<a class="nav-item nav-link" id="nav-lookup-tab" data-toggle="tab" href="#nav-lookup" role="tab" aria-controls="nav-lookup" aria-selected="false">Lookup Product</a>
+								</div>
+							</nav>
+					
+							<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+								<div class="tab-pane fade show active" id="nav-find" role="tabpanel" aria-labelledby="nav-find-tab">
+									<p style="text-align: center; padding-top: 10px;">Retrieve an item</p>
+									<form method="post" action="{{url_for('find_item')}}">
+										<div class="input-group mb-3">
+											<input name="ID" type="text" class="form-control" placeholder="Product ID" aria-label="ID" required>
+										</div>
+										<div class="input-group mb-3">
+											<input type="submit" value="Find" style="border-radius: 4px; background-color: white; colour: grey; width: 100%; height: 40px;">
+										</div>
+									</form>
+								</div>
+						
+								<div class="tab-pane fade" id="nav-lookup" role="tabpanel" aria-labelledby="nav-lookup-tab">
+									<p style="text-align: center; padding-top: 10px;">Lookup product ID for a product</p>
+									<form method="post" action="{{url_for('find_pid')}}">
+										<div class="input-group mb-3">
+											<input name="Name" type="text" class="form-control" placeholder="Product Name" aria-label="Name" required>
+										</div>
+										<div class="input-group mb-3">
+											<input type="submit" value="Find" style="border-radius: 4px; background-color: white; colour: grey; width: 100%; height: 40px;">
+										</div>
+									</form>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="tab-pane" id="analytics">		
+			<section id="page">	
+				<div class="container">
+					<h6 class="section-title h1">Analytics</h6>
+					<p id="output"></p>
+					<div id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+					    <!-- Indicators -->
+					    <ol class="carousel-indicators"></ol>
+					    <!-- Wrapper for slides -->
+					    <div class="carousel-inner" role="listbox" style="text-align: center; height: 600px;"></div>
+					    <!-- Controls -->
+					        <a class="carousel-control-prev" href="#carousel" data-slide="prev">
+					        <span class="carousel-control-prev-icon"></span>
+					        </a>
+					    <a class="carousel-control-next" href="#carousel" data-slide="next">
+					        <span class="carousel-control-next-icon"></span>
+					    </a>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	
+</body>
+<!--
+<script>
+$(".nav-pills .nav-item .nav-link:not(.nav-pills .nav-item.dropdown .nav-link), .dropdown-item").click(function()
+    {
+        $(".dropdown-item.active").removeClass('active');
+    });
+</script>
+-->
+</html>
+
+

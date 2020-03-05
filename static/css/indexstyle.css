@@ -1,0 +1,148 @@
+/*
+Top bar
+*/
+
+.navbar {
+  padding:0;
+  padding-left: 5px;
+  background-color: #007b5e;
+  border: 0 !important;
+  font-size: 12px !important;
+  line-height: 1.42857143 !important;
+  letter-spacing: 4px;
+  border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+  color: black !important;
+  border-bottom: 0px solid !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+  color: black !important;
+  background-color: #007b5e !important;
+  border-bottom: 0px solid !important;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+  border-bottom: 0px solid !important;
+  color: #007b5e !important;
+}
+
+.nav {
+   padding:0;
+   padding-left: 5px;
+   background-color: #007b5e;
+   border: 0;
+   letter-spacing: 2px;
+   border-radius: 0;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	  border-bottom: 0px solid !important;
+	  border-color: transparent transparent transparent;
+}
+
+.nav-tabs .nav-link {
+    border: 0px solid transparent !important;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover { 
+	outline: none;
+	cursor: default;
+}
+
+.nav li:visited a, .nav li:link a, .nav li:hover a, .nav li:active a {
+	border: none;
+	background: none;
+	border-bottom: transparent !important; 
+	border-radius:0;
+}
+
+.nav li:visited a, .nav li:link a, .nav li:hover a, .nav li:active a {
+	border: none;
+	background: none;
+	border-bottom: transparent !important; 
+	border-radius:0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #007b5e;
+  border-bottom:0 !important;
+}
+
+li {
+  float: left;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 20px;
+  border-bottom:0 !important;
+}
+
+a, a:visited, a:link, a:hover, a:active
+{
+	 border:none;
+	 outline:none;
+	 color: black;
+	 border-bottom:0;
+}
+
+.logo_image{
+	width: 30px;
+	height: 30px;
+}
+
+/*
+Section
+*/
+
+section {
+    padding-top: 70px;
+	 padding-bottom: 0px;
+	 min-height: 100vh;
+}
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 20px;
+}
+
+#page{
+	background: #007b5e;
+   color: #eee;
+}
+#page h6.section-title{
+    color: #eee;
+}
+
+#page .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #f3f3f3;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 2px solid !important;
+    font-size: 20px;
+    font-weight: normal;
+    justify-content: space-between;
+}
+
+#page .nav-tabs .nav-link {
+    border: 0px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #eee;
+    font-size: 20px;
+}
+
+/*
+Input group
+*/
+.input-group{
+	padding-top: 2px;
+}

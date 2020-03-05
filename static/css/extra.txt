@@ -1,0 +1,43 @@
+  <!--
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	<nav class="navbar navbar-expand-lg">
+  	  <a class="navbar-brand">
+  	    <span><img class ="logo_image" src="../static/logo.jpg" alt=""></span>
+  	    Warehouse Management
+  	  </a>
+  	</nav>
+  -->
+  
+	      	
+		<!--
+  	    <div class="navbar-header">
+  	      <a class="navbar-brand"><span><img class ="logo_image" src="../static/logo3.png" alt=""></span></a>
+  			<a class="navbar-brand mb-0 h1">WAREHOUSE</a>
+  			<a class="navbar-text" href="#inventory" data-toggle="tab">Inventory</a>
+  			<a class="navbar-text" href="#retrieval" data-toggle="tab">Retrieval</a>
+  	    </div>
+	    	<ul class="nav nav-tabs justify-content-left" id="tabs">
+				<li class="nav-item text-nowrap" style="width: 100px;">
+						<a class="nav-link active text-primary text-center" data-toggle="tab" href="#inventory">Home</a>
+				</li>
+				<li class="nav-item text-nowrap" style="width: 100px;">
+						<a class="nav-link text-primary text-center" data-toggle="tab" href="#retrieval">Requests</a>
+				</li>
+			</ul>
+			<div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#inventory">Inventory</a></li>
+        <li><a href="#retrieval">Retrieval</a></li>
+      </ul>
+			</div>
+			-->
+<!--
+<ul>
+ 		<li><a><span><img class ="logo_image" src="../static/logo3.png" alt=""></span></a></li>
+ 	 	<li><a style="font-weight: bold;">WAREHOUSE</a></li>
+	<li><a href="#inventory">Inventory</a></li>
+	<li><a href="#retrieval">Retrieval</a></li>
+</ul>
+-->
